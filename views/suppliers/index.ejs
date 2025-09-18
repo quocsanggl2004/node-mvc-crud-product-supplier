@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<div class="container">
+  <h1>Danh sách nhà cung cấp</h1>
+  <a href="/suppliers/new" class="btn btn-primary">+ Thêm nhà cung cấp</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Địa chỉ</th>
+        <th>Điện thoại</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% suppliers.forEach(supplier => { %>
+        <tr>
+          <td><%= supplier.name %></td>
+          <td><%= supplier.address %></td>
+          <td><%= supplier.phone %></td>
+          <td>
+            <a href="/suppliers/<%= supplier._id %>/edit" class="btn btn-warning">Sửa</a>
+            <form action="/suppliers/<%= supplier._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Xóa nhà cung cấp này?')">Xóa</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+<div class="container">
+  <h1>Sửa sản phẩm</h1>
+  <form action="/products/<%= product._id %>?_method=PUT" method="POST" class="form">
+    <div class="form-group">
+      <label>Tên:</label>
+      <input type="text" name="name" value="<%= product.name %>" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Giá:</label>
+      <input type="number" name="price" value="<%= product.price %>" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Số lượng:</label>
+      <input type="number" name="quantity" value="<%= product.quantity %>" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Nhà cung cấp:</label>
+      <select name="supplierId" required class="form-control">
+        <% suppliers.forEach(supplier => { %>
+          <option value="<%= supplier._id %>" <%= supplier._id.toString() === product.supplierId.toString() ? 'selected' : '' %>><%= supplier.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a href="/products" class="btn btn-secondary">Quay lại</a>
+  </form>
+</div>
+<%- include('../partials/footer') %>

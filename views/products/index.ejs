@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<div class="container">
+  <h1>Danh sách sản phẩm</h1>
+  <a href="/products/new" class="btn btn-primary">+ Thêm sản phẩm</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Nhà cung cấp</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(product => { %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= typeof product.price === 'number' ? product.price.toLocaleString() : '' %></td>
+          <td><%= product.quantity %></td>
+          <td><%= product.supplierId ? product.supplierId.name : '' %></td>
+          <td>
+            <a href="/products/<%= product._id %>/edit" class="btn btn-warning">Sửa</a>
+            <form action="/products/<%= product._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Xóa sản phẩm này?')">Xóa</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

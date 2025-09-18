@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+<div class="container">
+  <h1>Sửa nhà cung cấp</h1>
+  <form action="/suppliers/<%= supplier._id %>?_method=PUT" method="POST" class="form">
+    <div class="form-group">
+      <label>Tên:</label>
+      <input type="text" name="name" value="<%= supplier.name %>" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Địa chỉ:</label>
+      <input type="text" name="address" value="<%= supplier.address %>" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Điện thoại:</label>
+      <input type="text" name="phone" value="<%= supplier.phone %>" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a href="/suppliers" class="btn btn-secondary">Quay lại</a>
+  </form>
+</div>
+<%- include('../partials/footer') %>
